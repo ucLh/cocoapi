@@ -492,6 +492,22 @@ class COCOeval:
         elif iouType == 'keypoints':
             summarize = _summarizeKps
         self.stats = summarize()
+        
+        stat_str = f'Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = {self.stats[0]}\n' \
+                   f'Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=100 ] = {self.stats[1]}\n' \
+                   f'Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=100 ] = {self.stats[2]}\n' \
+                   f'Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = {self.stats[3]}\n' \
+                   f'Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = {self.stats[4]}\n' \
+                   f'Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = {self.stats[5]}\n' \
+                   f'Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=  1 ] = {self.stats[6]}\n' \
+                   f'Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets= 10 ] = {self.stats[7]}\n' \
+                   f'Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = {self.stats[8]}\n' \
+                   f'Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = {self.stats[9]}\n' \
+                   f'Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = {self.stats[10]}\n' \
+                   f'Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = {self.stats[11]}\n' \
+                   f'Average Recall     (AR) @[ IoU=0.50      | area=   all | maxDets= 10 ] = {self.stats[12]}'
+        
+        return self.stats, stat_str
 
     def __str__(self):
         self.summarize()
